@@ -1,0 +1,173 @@
+---
+import dayjs from "dayjs";
+import { Icon } from "@iconify-icon/react";
+import Button from "../components/shared/Button";
+---
+
+<main class="rounded-4xl p-10 h-[calc(100dvh-160px)]">
+  <section
+    class="max-w-[1024px] mx-auto flex flex-col items-start justify-center h-full"
+  >
+    <div>
+      <h1 class="mb-7 mt-[.5rem] font-michroma">
+        <span
+          class="bg-gradient-to-b text-4xl from-gray-50 to-gray-300/80 bg-clip-text text-transparent"
+        >
+          I&apos;m{" "}
+        </span>
+        <span
+          class="text-7xl bg-gradient-to-b from-amber-200 to-amber-600 bg-clip-text font-normal text-transparent"
+        >
+          Sohan Dutta
+        </span>
+      </h1>
+
+      <h2 class="mt-[.5rem] text-[1.5rem] text-white">
+        a <span class="font-semibold text-white">Software Engineer</span>
+        <span class=""> from </span>
+        <span class="font-semibold">India 🇮🇳</span>
+      </h2>
+
+      <div class="mt-[1.5rem] mb-5">
+        <p class="text-white">
+          <Icon
+            client:load
+            icon="solar:map-arrow-right-bold-duotone"
+            className="text-amber-400"
+          />
+          <span> Specialized in building </span>
+          <span class="font-semibold text-white">Products</span>
+          <span> from inception to completion</span>
+        </p>
+        <p class="text-white">
+          <Icon
+            client:load
+            icon="solar:map-arrow-right-bold-duotone"
+            className="text-amber-400"
+          />
+          <span> With </span>
+          <span class="font-semibold text-white">
+            {dayjs().diff(dayjs("2018-07-01"), "year")}+ years
+          </span>
+          <span> of experience</span>
+        </p>
+        <p class="text-white">
+          <Icon
+            client:load
+            icon="solar:map-arrow-right-bold-duotone"
+            className="text-amber-400"
+          />
+          <span>My poison of choice is </span>
+          <span class="font-semibold text-white">Javascript and Go</span>
+        </p>
+        <p class="text-white">
+          <Icon
+            client:load
+            icon="solar:map-arrow-right-bold-duotone"
+            className="text-amber-400"
+          />
+          <span>FullStack Engineer experienced in building </span>
+          <span class="font-semibold text-white">
+            Web, Mobile and AI/ML Applications
+          </span>
+        </p>
+      </div>
+
+      <Button>Curious ?</Button>
+    </div>
+  </section>
+</main>
+
+<style>
+  main {
+    --space: 10px;
+    --positionX: 0%;
+    --positionY: 0%;
+
+    background-color: transparent;
+    background-image:
+      repeating-radial-gradient(
+        circle at var(--positionX) var(--positionY),
+        transparent 0,
+        #34353a var(--space)
+      ),
+      repeating-linear-gradient(#3a3a34, #000000, #ffa337);
+    animation: 3s ease 200ms 1 running forwards spin;
+
+    --color-1: #353023;
+    --color-2: #4d452b;
+    --color-3: #f4d743;
+    --color-4: #f3b034;
+    --color-5: #f45a18;
+
+    position: relative;
+  }
+
+  @property --space {
+    syntax: "<length>";
+    inherits: true;
+    initial-value: 10px;
+  }
+
+  @property --positionX {
+    syntax: "<percentage>";
+    inherits: true;
+    initial-value: 0%;
+  }
+
+  @property --positionY {
+    syntax: "<percentage>";
+    inherits: true;
+    initial-value: 0%;
+  }
+
+  @keyframes spin {
+    0% {
+      --space: 10px;
+      --positionX: 0%;
+      --positionY: 0%;
+    }
+    100% {
+      --space: 30px;
+      --positionX: 100%;
+      --positionY: 0%;
+    }
+  }
+
+  @property --gradient-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  main::before,
+  main::after {
+    content: "";
+    position: absolute;
+    inset: -0.2rem;
+    z-index: -1;
+    background: conic-gradient(
+      from var(--gradient-angle),
+      var(--color-3),
+      var(--color-4),
+      var(--color-5),
+      var(--color-4),
+      var(--color-3)
+    );
+    border-radius: inherit;
+    animation: rotation 20s linear infinite;
+  }
+
+  main::after {
+    filter: blur(3.5rem);
+  }
+
+  @keyframes rotation {
+    0% {
+      --gradient-angle: 0deg;
+    }
+    100% {
+      --gradient-angle: 360deg;
+    }
+  }
+</style>

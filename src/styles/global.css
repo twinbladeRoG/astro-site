@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+    --font-jura: 'Jura', serif;
+    --font-michroma: 'Michroma', serif;
+}
+
+.michroma-regular {
+    font-family: "Michroma", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.jura-normal {
+    font-family: "Jura", serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+}
