@@ -3,84 +3,12 @@ import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { Icon } from "@iconify-icon/react";
+import experiences from "./experiences";
+
 dayjs.extend(customParseFormat);
 dayjs.extend(advancedFormat);
 dayjs.extend(relativeTime);
-
-interface IExperience {
-  company: string;
-  role: string;
-  startDate: string;
-  endDate?: string;
-  companyWebsite?: string;
-  description: Array<string>;
-}
-
-const experiences: Array<IExperience> = [
-  {
-    company: "ITC Infotech",
-    role: "Lead Consultant",
-    startDate: "2024-09-26",
-    companyWebsite: "https://www.itcinfotech.com/",
-    description: [
-      "Worked with different departments on building AI solutions for their business problems",
-      "Migrated Frontend from Django Template to React",
-      "Improved the document extraction process by implementing Docling",
-      "Developed and Published the an GenAI based chat Android App for the whole ITC Group",
-    ],
-  },
-  {
-    company: "Codebuddy Private Limited",
-    role: "Director of Engineering, Frontend",
-    startDate: "2023-06-01",
-    endDate: "2024-09-05",
-    companyWebsite: "https://www.codebuddy.co/",
-    description: [
-      "Led a team of 10+ engineers, resulting in a 24% increase in project completion rate.",
-      "Participated in Standford’s Seed Transformation Program South Asia ‘24, by implementing new strategies.",
-      "Initiated AI projects, securing the company's first AI project, and expanded tech stack with SvelteKit, OpenAI, and Vercel AI SDK, leading to a 20% boost in project acquisition.",
-      "Initiated Open-Source contribution among the team where we built UI Libraries, Plugins, and Tools.",
-      "Developed the MVP for the in-house product CostGPT and CostGPTPro, and contributed majorly to the Notion-like document editor using LexicalJS and LLM-based Recommendation System.",
-      "Enhanced frontend efficiency by standardizing Git Flow, PR Review Process, and API Mocking Service, cutting dependencies on backend developers by 27%.",
-      "Implemented StorybookJS, ensuring a 50% improvement in design consistency across React-based projects.",
-      "Optimized server-side image handling, reducing load times by 35% using Sharp, AWS S3, and AWS CloudFront.",
-      "Implemented Event-Driven Polling mechanism using AWS SNS, AWS SQS, Celery, and Redis.",
-    ],
-  },
-  {
-    company: "Codebuddy Private Limited",
-    role: "Senior Software Engineer",
-    startDate: "2020-03-01",
-    endDate: "2023-05-30",
-    companyWebsite: "https://www.codebuddy.co/",
-    description: [
-      "Elevated code quality by 30% by enforcing ESlint, Stylelint, EditorConfig, and Prettier, and initiated per PR code reviews.",
-      "Boosted web application performance by 25% and SEO by 20% by integrating NextJS., which later got adopted as the primary framework for major projects.",
-      "Developed a Slackbot that improved team communication efficiency by 15%.",
-      "Worked on building interactive UI in React Native by implementing React Native Re-animated 2.",
-      "Streamlined development workflows with integrations like VSCode, Gitlab Issues, Asana, and Slack with CodeStream, improving review times by 30%.",
-      "Introduced Unit testing and CI/CD, leading to a 40% reduction in bugs and a 25% faster release cycle.",
-      "Improved code readability and maintainability by implementing TypeScript in large-scale projects.",
-      "Migrated projects to Monorepo structure, accelerating CI build processes by 35% using yarn/pnpm workspaces and Turborepo.",
-      "Leveraged Payload CMS with NextJS for content management, enhancing developer experience.",
-      "Spearheaded open-source projects, contributing tools that enhanced the developer community’s productivity by contributing to ESLint configs, VS Code extensions, and UI libraries.",
-      "Instituted End-to-End Test using Cypress and Playwright.   ",
-    ],
-  },
-  {
-    company: "Infosys Limited",
-    role: "Systems Engineer",
-    startDate: "2018-11-15",
-    endDate: "2020-02-28",
-    companyWebsite: "https://www.infosys.com/",
-    description: [
-      "Developed GUI Automation scripts that reduced time consumed for daily repetitive tasks which reduced SLA by 50% using Python.",
-      "Built an analytic dashboard, improving application performance tracking by 40% using ExpressJS, Angular 7, PostgreSQL, and PhantomJS.",
-      "Developed customer roll-out application to accelerate deployment using ExpressJS, and Angular 8.",
-      "Selected as one of the 5 from a group of 600+ trainees to undergo fast-track training on Java Springboot.",
-    ],
-  },
-];
 ---
 
 <section class="p-6 md:p-20 text-white">
@@ -89,39 +17,64 @@ const experiences: Array<IExperience> = [
   >
     Experience
   </h1>
-  {
-    experiences.map((exp) => (
-      <div class="mb-7 card">
-        <h2 class="font-semibold text-xl font-michroma">{exp.role}</h2>
-        <h2 class="font-michroma font-semibold mb-2 hover:underline focus:underline">
-          <a
-            href={exp.companyWebsite}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {exp.company}
-          </a>
-        </h2>
-        <p class="mb-3 text-gray-200">
-          {dayjs(exp.startDate).format("Do MMM, YYYY")}
 
-          {exp.endDate ? (
-            <span>
-              {" - "}
-              {dayjs(exp.endDate).format("Do MMM, YYYY")}
-            </span>
-          ) : (
-            <span> - Present</span>
-          )}
-        </p>
-        <ul class="list-disc ml-5">
-          {exp.description.map((desc) => (
-            <li class="text-gray-400 text-sm">{desc}</li>
-          ))}
-        </ul>
-      </div>
-    ))
-  }
+  <div>
+    {
+      experiences.map((exp) => (
+        <div class="mb-7 card">
+          <h2 class="font-michroma font-semibold mb-2 hover:underline focus:underline">
+            <a
+              href={exp.companyWebsite}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {exp.company}
+            </a>
+          </h2>
+          <div class="flex flex-col gap-7">
+            {exp.roles.map((role) => (
+              <div class="grid grid-cols-2">
+                <div>
+                  <h2 class="font-semibold text-xl font-michroma">
+                    {role.role}
+                  </h2>
+                  <p class="mb-3 text-gray-200">
+                    {dayjs(role.startDate).format("MMMM, YYYY")}
+
+                    {role.endDate ? (
+                      <span>
+                        {" - "}
+                        {dayjs(role.endDate).format("MMMM, YYYY")}
+                      </span>
+                    ) : (
+                      <span> - Present</span>
+                    )}
+                  </p>
+                  <ul class="list-disc ml-5">
+                    {role.description.map((desc) => (
+                      <li class="text-gray-400 text-sm">{desc}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div class="flex gap-4 flex-wrap justify-evenly items-center">
+                  {role.technologies.map((tech) => (
+                    <a
+                      href={tech.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Icon client:load icon={tech.icon} className="text-5xl" />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
 </section>
 
 <style>
